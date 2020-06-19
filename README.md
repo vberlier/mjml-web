@@ -36,7 +36,7 @@ The default export is the `mjml2html` function. The package also re-exports the 
 
   ```js
   mjml.registerComponent(MyComponent)
-  mjml.mjml2html('<mjml>...</mjml>', { ... })
+  mjml.default('<mjml>...</mjml>', { ... })
   ```
 
 ---
