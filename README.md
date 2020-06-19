@@ -13,31 +13,56 @@ You can install `mjml-web` with your `npm` client of choice.
 $ npm install mjml-web
 ```
 
-The bundle works in script tags too.
-
-```html
-<script src="https://unpkg.com/mjml-web"></script>
-```
-
 ## Usage
 
 The default export is the `mjml2html` function. The package also re-exports the content of `mjml-core`.
 
-- **Bundler**
+- **Webpack** (recommended)
 
   ```js
-  import mjml2html, { registerComponent } from 'mjml-web'
+  const mjml = await import(/* webpackChunkName: "mjml-web" */ 'mjml-web')
+  const { default: mjml2html, registerComponent } = mjml
 
   registerComponent(MyComponent)
-  mjml2html('<mjml>...</mjml>', { ... })
+  mjml2html('<mjml>...</mjml>')
+  ```
+
+  ```js
+  // webpack.config.js
+
+  const TerserPlugin = require('terser-webpack-plugin')
+
+  module.exports = {
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          exclude: /mjml-web/,
+        }),
+      ],
+    },
+  }
   ```
 
 - **Browser**
 
-  ```js
-  mjml.registerComponent(MyComponent)
-  mjml.default('<mjml>...</mjml>', { ... })
+  ```html
+  <script src="https://unpkg.com/mjml-web"></script>
   ```
+
+  ```js
+  const { default: mjml2html, registerComponent } = window.mjml
+
+  registerComponent(MyComponent)
+  mjml2html('<mjml>...</mjml>')
+  ```
+
+## Troubleshooting
+
+- `Element doesn't exist or is not registered`
+
+  You're probably using a bundler that's trying to minify `mjml-web` alongside your application. The original [mjml](https://github.com/mjmlio/mjml) package isn't meant to be used client-side and the component registration code can break depending on the way it gets minified.
+
+  The solution is to separate `mjml-web` from the other chunks and exclude it from the minification process (see [above](#usage)).
 
 ---
 
