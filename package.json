@@ -1,6 +1,6 @@
 {
   "name": "mjml-web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Browser-compatible mjml bundle",
   "author": "Valentin Berlier <berlier.v@gmail.com>",
   "license": "MIT",
