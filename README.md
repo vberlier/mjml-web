@@ -43,7 +43,7 @@ The default export is the `mjml2html` function. The package also re-exports the 
   }
   ```
 
-- **Browser**
+- **Browser** ([codepen](https://codepen.io/vberlier/pen/xxVqMdP))
 
   ```html
   <script src="https://unpkg.com/mjml-web"></script>
