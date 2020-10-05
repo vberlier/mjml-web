@@ -24,7 +24,7 @@
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {
-    "mjml": "4.7.0",
+    "mjml": "4.7.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
